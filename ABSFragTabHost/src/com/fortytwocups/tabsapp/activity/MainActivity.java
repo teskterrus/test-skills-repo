@@ -4,9 +4,12 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.androidbegin.absfragtabhost.R;
 import com.fortytwocups.tabsapp.db.DBAdapter;
 import com.fortytwocups.tabsapp.model.UserCard;
+import com.fortytwocups.tabsapp.preferences.Preferences;
 
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
+import android.widget.TextView;
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 public class MainActivity extends SherlockFragmentActivity {
@@ -19,6 +22,14 @@ public class MainActivity extends SherlockFragmentActivity {
 		// Set the view from main_fragment.xml
 		setContentView(R.layout.main_fragment);
 		
+		if (Preferences.getInstance().initUserInfo(this)) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Error");
+			builder.setMessage("Error while initializing user info from database!");
+			builder.setPositiveButton("OK", null);
+			AlertDialog dialog = builder.show();
+		}
+		
 		// Locate android.R.id.tabhost in main_fragment.xml
 		mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
 		
@@ -30,36 +41,12 @@ public class MainActivity extends SherlockFragmentActivity {
 		//		FragmentTab1.class, null);
 		
 		// Create Tab2
-		mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator(getResources().getString(R.string.Tab1Title)),
+		mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator(getResources().getString(R.string.Tab2Title)),
 				FragmentTab1.class, null);
 		
 		// Create Tab3
-		mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator(getResources().getString(R.string.Tab2Title)),
-				FragmentTab2.class, null);
-		UserCard dbUserInfo;
-		try {
-			UserCard user = new UserCard();
-			user.mName = "Yuriy";
-			user.mSurname = "Maliy";
-			user.mBio = "I was born in the year 1632, in the city of York, of a good family, though not of that country, my father being a foreigner of Bremen, who settled first at Hull.";
-			user.mAddress = "Ukraine, Chernihiv, Chervonogvardiiska st. 14/36";
-			user.mEmail = "yuriy_maliy@mail.ru";
-			user.mPhone = "+380937438411";
-			
-			DBAdapter db = new DBAdapter(this);
-			db.openToWrite();
-			db.deleteAll();
-			//db.insert("Test string");
-			db.insert(user);
-			db.close();
-			db = new DBAdapter(this);
-			db.openToRead();
-			dbUserInfo = db.getUserByName(user.mName);
-			Log.d("Main Activity", "Got text from DB:" + dbUserInfo.mBio );
-			db.close();
-		} catch (Exception ex) {
-			Log.d("Main Activity", "Error working with database!");
-			ex.printStackTrace();
-		}
+		mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator(getResources().getString(R.string.Tab1Title)),
+				FragmentTab2.class, null);		
 	}
+	
 }

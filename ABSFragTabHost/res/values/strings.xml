@@ -9,5 +9,8 @@
     <string name="FragmentTab3">This is Fragment Tab 3</string>
     <string name="Tab1Title">Contacts</string>
     <string name="Tab2Title">Bio</string>
+    <string name="phoneCaption">Phone:</string>
+    <string name="emailCaption">Email:</string>
+    <string name="addressCaption">Address:</string>
 
 </resources>

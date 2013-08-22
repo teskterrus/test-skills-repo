@@ -3,11 +3,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    
+    <ImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/avatar" />
+    
     <TextView
+        android:id="@+id/textViewBio"
+        android:layout_below="@+id/imageViewAvatar"
+        android:layout_marginTop="30dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/FragmentTab1" />
+
+
+
+    <TextView
+        android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/FragmentTab1" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/imageViewAvatar"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewName"
+        android:layout_below="@+id/textViewName"
+		android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:text="TextView" />
 
 </RelativeLayout>
